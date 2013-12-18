@@ -20,7 +20,7 @@ class Game
 			score = :black if @answer[index] == peg
 
 			# assign score
-			#scores[index] = score
+			scores[index] = score
 		}
 
 		return scores
