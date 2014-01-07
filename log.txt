@@ -1,0 +1,15 @@
+#Log
+
+download https://github.com/twbs/bootstrap/releases/download/v3.0.3/bootstrap-3.0.3-dist.zip
+Extract css, fonts, etc into project dir.
+
+create index.html
+use template from http://getbootstrap.com/getting-started/
+download jquery
+
+# Solver
+
+create rspec file
+create implementation.
+
+# Rails app
