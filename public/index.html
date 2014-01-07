@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mastermind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  <div class="container">
+  
+  <div class="page-header">
+    <h1>Mastermind</h1>
+  </div>  
+
+
+  <div id="board">
+  
+    <ul id="answer" class="code list-unstyled">
+      <li>?</li>
+      <li>?</li>
+      <li>?</li>
+      <li>?</li>
+    </ul>
+
+    <ul id="guesses" class="list-unstyled">
+      <li>
+        <ul class="code list-unstyled">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul class="score list-unstyled">
+          <li class="black">&nbsp;</li>
+          <li class="white">&nbsp;</li>
+          <li class="white">&nbsp;</li>
+          
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+
+  <div id="addguess">
+    <ul class="code list-unstyled">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <button id="addguessbutton" type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ok"></span></button>
+  </div>
+
+  <ul id="turns" class="list-unstyled">
+    <li>
+      <ul class="code list-unstyled">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </li>
+     <li>
+      <ul class="code list-unstyled">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div id="codepicker">
+    <div class="btn-group btn-group-xs">
+      <button type="button" data-color="white" class="btn btn-default white">&nbsp;</button>
+      <button type="button" data-color="yellow" class="btn btn-default yellow">&nbsp;</button>
+      <button type="button" data-color="red" class="btn btn-default red">&nbsp;</button>
+      <button type="button" data-color="blue" class="btn btn-default blue">&nbsp;</button>
+      <button type="button" data-color="green" class="btn btn-default green">&nbsp;</button>
+      <button type="button" data-color="black" class="btn btn-default black">&nbsp;</button>
+    </div>
+  </div>
+
+  <div id="won" class="alert alert-success"><strong>Congratulations!</strong> You have cracked the code!</div>
+
+
+<div id="gamecommands">
+  <button id="newgamebutton" type="button" class="btn btn-m btn-default">
+    <span class="glyphicon glyphicon-repeat"></span> Restart Game
+  </button>
+ </div>
+
+</div>
+
+
+<div id="instructions">
+  <p>Click these squares to choose four colors, then OK to submit your guess</p>
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="https://code.jquery.com/jquery.js"></script>-->
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

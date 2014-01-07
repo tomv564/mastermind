@@ -1,9 +1,13 @@
+require 'securerandom'
+
 class Game
 	@answer = []
+	attr_reader :id
 	
 	def initialize(answer)
 		validate_code(answer)
 		@answer = answer
+		@id = SecureRandom.hex(4)
 	end
 
 	def guess(code)
