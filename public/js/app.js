@@ -133,6 +133,8 @@ Mastermind = new function() {
 	$('#addguessbutton').click(addGuess);
 	$('#newgamebutton').click(reset);
 
+	reset();
+
 	return {
 		// public things, which we don't need as nothing talks to us.
 

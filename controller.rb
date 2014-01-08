@@ -43,6 +43,6 @@ post '/game/:id/guesses' do
 
 	# return the score
 	content_type :json
-	score.to_json
+	score.shuffle.to_json
 
 end

@@ -8,8 +8,10 @@ class Generator
 
 	
 	def self.generate
-
-		return @@colors.sample(4)
+		answer = []
+		4.times { |n| answer.push @@colors.sample }
+		answer
+		#return @@colors.sample(4)
 		
 	end
 
