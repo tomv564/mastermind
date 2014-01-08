@@ -16,13 +16,29 @@ Mastermind = new function() {
 		$(selectedPeg).removeClass();
 		$(selectedPeg).addClass(color);
 		$('#codepicker').toggle();
+		updateAddGuessButton();
 	}
+
+	var updateAddGuessButton = function () {
+		var colors = getColors();
+		var canAdd = (colors && 
+						colors.indexOf(undefined) === -1 &&
+						colors.indexOf("") === -1);
+		$('#addguessbutton').prop('disabled', !canAdd);
+	}
+
+	var getColors = function () {
+		var colors = [];
+		$('#addguess li').each(function (index, item) {colors.push($(item).attr('class'));})
+		return colors;
+	}
+
 
 	var addGuess = function () {
 
 		// insert as new list in guesses
-		var colors = [];
-		$('#addguess li').each(function (index, item) {colors.push($(item).attr('class'));})
+		var colors = getColors();
+		
 		var newRow = $('#guesses').append('<li></li>');
 		lastGuess = newRow;
 		$('#addguess ul').clone().appendTo(newRow);
@@ -38,6 +54,8 @@ Mastermind = new function() {
 			
 		}
 
+		updateAddGuessButton();
+
 		// if there are turns left, remove one
 		if (turns.length > 0) {
 			turns.first().remove();
@@ -48,12 +66,6 @@ Mastermind = new function() {
 	}
 
 	var onGuessAdded = function(data) {
-
-// 		<ul class="score list-unstyled">
-//           <li class="black">&nbsp;</li>
-//           <li class="white">&nbsp;</li>
-//           <li class="white">&nbsp;</li>  
-//         </ul>
 
 		var scorePegs = $('<ul class="score list-unstyled"></ul>');
 
@@ -87,6 +99,9 @@ Mastermind = new function() {
 
 		$('#won').hide();
 
+		// remove picks
+		$('#addguess li').removeClass();
+
 		// remove guesses.
 		$('#guesses').empty();
 
@@ -102,6 +117,8 @@ Mastermind = new function() {
 
 		// show addguess
 		$('#addguess').show();
+
+		updateAddGuessButton();
 		
 
 	}
