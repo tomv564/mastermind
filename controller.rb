@@ -3,12 +3,13 @@ require 'json'
 require_relative 'game'
 require_relative 'generator'
 
+
+
 configure do 
 	set :games, Hash.new
 end
 
 get '/' do 
-
 	redirect '/index.html'
 end
 
@@ -43,6 +44,6 @@ post '/game/:id/guesses' do
 
 	# return the score
 	content_type :json
-	score.shuffle.to_json
+	score.to_json
 
 end

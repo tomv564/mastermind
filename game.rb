@@ -3,6 +3,7 @@ require 'securerandom'
 class Game
 	@answer = []
 	attr_reader :id
+	@@scorepegs = [:black, :white, :blank]
 	
 	def initialize(answer)
 		validate_code(answer)
@@ -13,21 +14,40 @@ class Game
 	def guess(code)
 		validate_code(code)
 		scores = []
+		used = []
 
-		# logic: for each peg: 
-		code.each_with_index { |peg,index| 
-			
-			# in the set or not?
-			score = @answer.include?(peg) ? :white : :blank
+		# mark the correct positions
+		code.each_with_index { |peg, index|  
 
-			# correct: black
-			score = :black if @answer[index] == peg
-
-			# assign score
-			scores[index] = score
+		 	if @answer[index] == peg
+		 		scores.push :black
+		 		used[index] = true # can no longer be used.
+		 		code[index] = nil # can no longer be used.
+			end
 		}
 
-		return scores
+		# mark the correct colors
+		code.each_with_index { |peg, index|  
+
+			
+			# all indices of the same color that are not used.
+			occurrances = @answer.each_index.select{ |i| @answer[i] == peg && !used[i]}
+			
+			if occurrances.length < 1
+				next
+			end
+
+			index = occurrances.first
+			used[index] = true
+			scores.push :white
+
+		}
+
+		# add missing blanks.
+		(4 - scores.length).times { scores.push :blank }
+
+		scores.sort_by { |a|  @@scorepegs.index(a) }
+		
 	end
 
 	def validate_code(code)

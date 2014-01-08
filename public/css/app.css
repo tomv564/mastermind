@@ -7,6 +7,10 @@
 
 /* board */
 
+ul.guesses {
+	margin-bottom: 0px;
+}
+
 ul.code {
 	clear: both;
 	overflow: auto;
@@ -23,6 +27,7 @@ ul.code li {
 	text-align: center;
 	height: 28px;
 	border-radius: 20px;
+	margin-bottom: 0px;
 
 }
 
@@ -34,6 +39,7 @@ ul#answer li {
 
 ul#guesses {
 	clear: both;
+	margin-bottom: 0px;
 }
 
 /* scores */
@@ -44,7 +50,7 @@ ul.score {
 	display: inline-block;
 	font-size: 6px;
 	width: 40px;
-	margin-left: 5px;
+	margin-left: 10px;
 	margin-top: 5px;
 }
 
@@ -104,7 +110,9 @@ ul.code {
 /* add guess */
 
 #addguess ul {
-	display: inline;
+	display: inline-block;
+	margin-bottom: 0px;
+	
 }
 
 #addguess ul.code li {
@@ -113,7 +121,9 @@ ul.code {
 
 #addguessbutton {
 	display: inline;
-	margin-left: 10px;
+	margin-left: 8px;
+	margin-top: 8px;
+	vertical-align: top;
 }
 
 #addguess li {
@@ -141,6 +151,10 @@ ul.code {
 /* content */
 
 #won {
+	display: none;
+}
+
+#lost {
 	display: none;
 }
 

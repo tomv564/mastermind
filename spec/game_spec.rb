@@ -55,7 +55,22 @@ describe Game do
 		game = Game.new validAnswer
 		guess = [:white, :white, :green, :red]
 		score = game.guess(guess)
+		expect(score).to match_array([:black, :white, :blank, :blank])
+	end
+	it "does not score extra white pegs" do 
+		validAnswer = [:white, :white, :black, :black]
+		game = Game.new validAnswer
+		guess = [:white, :white, :white, :black]
+		score = game.guess(guess)
+		expect(score).to match_array([:black, :black, :black, :blank])
+	end
+	it "does not score extra white pegs II" do
+		validAnswer = [:green, :black, :yellow, :green]
+		game = Game.new validAnswer
+		guess = [:black, :green, :yellow, :black]
+		score = game.guess(guess)
 		expect(score).to match_array([:black, :white, :white, :blank])
 	end
-	
+
+
 end

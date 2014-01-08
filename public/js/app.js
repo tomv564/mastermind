@@ -47,12 +47,7 @@ Mastermind = new function() {
 		$('#addguess li').removeClass();
 
 		var turns = $('ul#turns').children();
-		if (turns.length === 0) {
 
-			// no turns left, hide game controls
-			$('#addguess').hide();
-			
-		}
 
 		updateAddGuessButton();
 
@@ -80,6 +75,17 @@ Mastermind = new function() {
 
 		if (correct === 4)
 			gameWon();
+		else {
+			var turns = $('ul#turns').children();
+			if (turns.length === 0) {
+				gameLost();
+			}
+		}
+	}
+
+	var gameLost = function() {
+		$('#lost').show();
+		$('#addguess').hide();
 	}
 
 	var gameWon = function () {
@@ -98,6 +104,7 @@ Mastermind = new function() {
 		$.post('/game', onGameCreated);
 
 		$('#won').hide();
+		$('#lost').hide();
 
 		// remove picks
 		$('#addguess li').removeClass();
