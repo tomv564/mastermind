@@ -57,5 +57,5 @@ describe Game do
 		score = game.guess(guess)
 		expect(score).to match_array([:black, :white, :white, :blank])
 	end
-
+	
 end
