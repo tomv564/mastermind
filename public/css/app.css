@@ -31,6 +31,10 @@ ul.code li {
 
 }
 
+ul.code li.selected {
+	border: 2px solid #666;
+}
+
 ul#answer li {
 	font-size: 16px;
 	color: #fff;
@@ -131,7 +135,10 @@ ul.code {
 }
 
 #codepicker {
-	display: none;
+	margin-top: 5px;
+	margin-left: -5px;
+	width: 200px;
+	/*display: none;*/
 }
 
 /* remaining turns */

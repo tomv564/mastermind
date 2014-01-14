@@ -60,6 +60,17 @@
     <button id="addguessbutton" type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-ok"></span></button>
   </div>
 
+   <div id="codepicker" class="well well-sm">
+    <!-- <div class="btn-group btn-group-sm"> -->
+      <button type="button" data-color="white" class="btn btn-default btn-sm white">&nbsp;</button>
+      <button type="button" data-color="yellow" class="btn btn-default btn-sm yellow">&nbsp;</button>
+      <button type="button" data-color="red" class="btn btn-default btn-sm red">&nbsp;</button>
+      <button type="button" data-color="blue" class="btn btn-default btn-sm blue">&nbsp;</button>
+      <button type="button" data-color="green" class="btn btn-default btn-sm green">&nbsp;</button>
+      <button type="button" data-color="black" class="btn btn-default btn-sm black">&nbsp;</button>
+    <!-- </div> -->
+  </div>
+
   <ul id="turns" class="list-unstyled">
     <li>
       <ul class="code list-unstyled">
@@ -79,16 +90,7 @@
     </li>
   </ul>
 
-  <div id="codepicker">
-    <div class="btn-group btn-group-xs">
-      <button type="button" data-color="white" class="btn btn-default white">&nbsp;</button>
-      <button type="button" data-color="yellow" class="btn btn-default yellow">&nbsp;</button>
-      <button type="button" data-color="red" class="btn btn-default red">&nbsp;</button>
-      <button type="button" data-color="blue" class="btn btn-default blue">&nbsp;</button>
-      <button type="button" data-color="green" class="btn btn-default green">&nbsp;</button>
-      <button type="button" data-color="black" class="btn btn-default black">&nbsp;</button>
-    </div>
-  </div>
+ 
 
   <div id="won" class="alert alert-success"><strong>Congratulations!</strong> You have cracked the code!</div>
   <div id="lost" class="alert alert-danger"><strong>Boo!</strong> You failed to crack the code!</div>

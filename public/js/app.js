@@ -6,16 +6,23 @@ Mastermind = new function() {
 	var gameId;
 
 	// private functions 
-	var showCodePicker = function (peg) {
-		selectedPeg = peg.target;
-		$('#codepicker').css({position:"absolute", left:peg.pageX,top:peg.pageY}).toggle();
+	var onPegClicked = function (peg) {
+		selectPeg(peg.target);
+		//selectedPeg = peg.target;
+		//$('#codepicker').css({position:"absolute", left:peg.pageX,top:peg.pageY}).toggle();
 	}
 
 	var onCodeSelected = function (selectedColor) {
 		var color = $(selectedColor.target).data('color');
 		$(selectedPeg).removeClass();
 		$(selectedPeg).addClass(color);
-		$('#codepicker').toggle();
+
+		// select next peg?
+		var nextPeg = $(selectedPeg).next('li')[0];
+		if (nextPeg)
+			selectPeg(nextPeg);
+
+
 		updateAddGuessButton();
 	}
 
@@ -23,7 +30,8 @@ Mastermind = new function() {
 		var colors = getColors();
 		var canAdd = (colors && 
 						colors.indexOf(undefined) === -1 &&
-						colors.indexOf("") === -1);
+						colors.indexOf("") === -1 &&
+						colors.indexOf("selected") === -1);
 		$('#addguessbutton').prop('disabled', !canAdd);
 	}
 
@@ -81,11 +89,15 @@ Mastermind = new function() {
 				gameLost();
 			}
 		}
+
+		selectPeg($('#addguess li').first());
+
 	}
 
 	var gameLost = function() {
 		$('#lost').show();
 		$('#addguess').hide();
+		$('#codepicker').hide();
 	}
 
 	var gameWon = function () {
@@ -93,6 +105,7 @@ Mastermind = new function() {
 		turns.empty();
 		$('#won').show();
 		$('#addguess').hide();
+		$('#codepicker').hide();
 	}
 
 	var reset = function () {
@@ -122,12 +135,20 @@ Mastermind = new function() {
 			turns.append(emptyturn);
 		};
 
+		selectPeg($('#addguess li').first());
+
 		// show addguess
 		$('#addguess').show();
+		$('#codepicker').show();
 
 		updateAddGuessButton();
-		
 
+	}
+
+	var selectPeg = function(peg) {
+		selectedPeg = peg;
+		$('#addguess li').removeClass('selected');
+		$(selectedPeg).addClass('selected');
 	}
 
 	var onGameCreated = function(data) {
@@ -135,8 +156,14 @@ Mastermind = new function() {
 	}
 
 	// event handlers
-	$('#addguess li').click(showCodePicker);
-	$('#codepicker button').click(onCodeSelected);
+	$('#addguess li').click(onPegClicked);
+	//var pickerHtml = $('#codepicker')[0].outerHTML;
+	//$('#codepicker').remove();
+
+	$('#addguess li').click(function(event) {selectedPeg = event.target;})
+	//$('#addguess li').popover({html: true, content: pickerHtml, placement : 'bottom', animation: true});
+	$('#codepicker button').on("click", onCodeSelected); // live because of popover
+	$('#addguess').on("click", "button", onCodeSelected)
 	$('#addguessbutton').click(addGuess);
 	$('#newgamebutton').click(reset);
 
