@@ -44,6 +44,10 @@ Mastermind = new function() {
 
 	var addGuess = function () {
 
+
+		// clear the selection
+		$('#addguess li').removeClass('selected');
+
 		// insert as new list in guesses
 		var colors = getColors();
 		
@@ -54,15 +58,7 @@ Mastermind = new function() {
 		// clear old 'add guess' list 	
 		$('#addguess li').removeClass();
 
-		var turns = $('ul#turns').children();
-
-
 		updateAddGuessButton();
-
-		// if there are turns left, remove one
-		if (turns.length > 0) {
-			turns.first().remove();
-		}
 
 		$.post('/game/' + gameId + '/guesses', {'colors[]': colors}).done(onGuessAdded);
 
@@ -84,10 +80,15 @@ Mastermind = new function() {
 		if (correct === 4)
 			gameWon();
 		else {
+
+			// if there are turns left, remove one
 			var turns = $('ul#turns').children();
-			if (turns.length === 0) {
+			if (turns.length > 0) {
+				turns.first().remove();
+			} else {
 				gameLost();
 			}
+
 		}
 
 		selectPeg($('#addguess li').first());
@@ -131,7 +132,7 @@ Mastermind = new function() {
 
 		// reload 11 empty turns.
 		var emptyturn = '<li><ul class="code list-unstyled"><li/><li/><li/><li/></ul></li>';
-		for (var i = 0; i < 11; i++) {
+		for (var i = 0; i <= 10; i++) {
 			turns.append(emptyturn);
 		};
 
